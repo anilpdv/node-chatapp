@@ -2,7 +2,8 @@ var express     = require("express");
 var bodyParser  = require("body-parser");
 var mongoose    = require("mongoose");
 var path        = require("path");
-
+var socketIO    = require("socket.io");
+var http        = require("http");
 // path
 const publicPath = path.join(__dirname,"../public");
 var app = express();
