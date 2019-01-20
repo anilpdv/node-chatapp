@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Node js</title>
-    </head>
-    <body>
-        <h1>There is no node here it is html</h1>
-        <h3>hear all </h3>
-
-    </body>
+  <head>
+    <title>Node js</title>
+  </head>
+  <body>
+    <h1>There is no node here it is html</h1>
+    <h3>hear all</h3>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+      let socket = io();
+      // on connect console.log hello
+      socket.on("connect", () => {
+        console.log("connected to server");
+      });
+      // on disconnect console log no hello
+      socket.on("disconnect", () => {
+        console.log("disconnected");
+      });
+    </script>
+  </body>
 </html>
