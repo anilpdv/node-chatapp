@@ -16,8 +16,22 @@ app.use(express.static(publicPath));
 // connectio
 io.on("connection", socket => {
   console.log("new user connected");
+
+  // on disconnect just console log clients diesconnected
   socket.on("disconnect", () => {
     console.log("client disconnect");
+  });
+
+  // send email to the client
+  socket.emit("newmessage", {
+    from: "pdvanil007@gmail.com",
+    text: "Hey,Whats is going on",
+    createAt: 123
+  });
+
+  // on creating mail
+  socket.on("createmessage", email => {
+    console.log(email);
   });
 });
 
@@ -25,12 +39,15 @@ var port = process.env.PORT || 3000;
 // listen to port:3000
 server.listen(port, () => {
   console.log("[chat code app] app is running on port: " + port);
+
   setTimeout(function() {
     console.log("[chat code app] app started...");
   }, 2000);
+
   setTimeout(function() {
     console.log("[chat code app] happy coding!(.-.)/");
   }, 1000);
+
   setTimeout(function() {
     console.log("[chat code app] click here https://localhost:3000");
   }, 3000);
