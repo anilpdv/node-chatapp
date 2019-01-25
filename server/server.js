@@ -22,16 +22,13 @@ io.on("connection", socket => {
     console.log("client disconnect");
   });
 
-  // send email to the client
-  socket.emit("newmessage", {
-    from: "pdvanil007@gmail.com",
-    text: "Hey,Whats is going on",
-    createAt: 123
-  });
-
   // on creating mail
   socket.on("createmessage", email => {
-    console.log(email);
+    io.emit("newmessage", {
+      from: email.from,
+      text: email.text,
+      createdAt: new Date()
+    });
   });
 });
 
