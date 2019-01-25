@@ -22,31 +22,33 @@ io.on("connection", socket => {
     console.log("client disconnect");
   });
 
+  // send email to the client
+  socket.emit("newmessage", {
+    from: "pdvanil007@gmail.com",
+    text: "Hey,Whats is going on",
+    createAt: 123
+  });
+
   // on creating mail
-  socket.on("createmessage", message => {
-    console.log("createmessage", message);
-    io.emit("newmessage", {
-      from: message.from,
-      text: message.text,
-      createAt: new Date().getTime()
-    });
+  socket.on("createmessage", email => {
+    console.log(email);
   });
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 // listen to port:3000
 server.listen(port, () => {
   console.log("[chat code app] app is running on port: " + port);
 
-  setTimeout(function() {
-    console.log("[chat code app] app started...");
-  }, 2000);
-
-  setTimeout(function() {
-    console.log("[chat code app] happy coding!(.-.)/");
-  }, 1000);
-
-  setTimeout(function() {
-    console.log("[chat code app] click here https://localhost:3000");
-  }, 3000);
+  // setTimeout(function() {
+  //   console.log("[chat code app] app started...");
+  // }, 2000);
+  //
+  // setTimeout(function() {
+  //   console.log("[chat code app] happy coding!(.-.)/");
+  // }, 1000);
+  //
+  // setTimeout(function() {
+  //   console.log("[chat code app] click here https://localhost:3000");
+  // }, 3000);
 });
